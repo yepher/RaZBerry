@@ -1,7 +1,19 @@
 RaZberry
 ========
 
-There are my notes About ZWave and RaZerry
+These are my notes About ZWave and RaZerry
+
+A RaZberry hardware solution is a combination of the Raspberry PI motherboard and the RaZberry Z-Wave transceiver daughter board. The daughter board is connected to the mother-board using the General IO Pin header connector of Raspberry PI. This GPIO interface offers Serial TX and RX signals, ground and 3.3 V VCC to power the Z-Wave transceiver board. 
+
+The RaZberry uses the ZM3102 Z-Wave transceiver from Sigma Designs. This module combines a "System on Chip" (SOC) with a 8051 micro controller, the Z-Wave transceiver and some IO interfaces the systems crystal and the SAW antenna filter.
+
+
+The micro controller of the SOC contains control code that operates the wireless transceiver and handles certain network level operations of Z-Wave. The communication with this code runs over the serial interface. There is a protocol specication for this interface that is issued by the
+manufacturer of the Z-Wave chip Sigma Designs that most of the Z-Wave transceivers on the market (e.g. USB Sticks) use. This interface specication - called Sigma Designs Serial API - is not a public document but available under Non Disclosure Agreement only as part of the Sigma Designs Systems Development Kit (SDK). The firmware of RaZberry is based on the SDK Version 4.54 but has enhanced the Sigma Designs Serial API in several ways.
+
+
+Future Goals
+===============
 
 I would like to make a ZWave decoder that will monitor the serial line and output human readable information about what is being sent.
 
@@ -32,6 +44,8 @@ Install "interceptty".
 interceptty -s 'ispeed 115200 ospeed 115200' /dev/ttyAMA0 /tmp/ttyAMA0
 
 ```
+
+Once you are done sniffing the serial port you will need to stop the Z-Way server and change "config.xml" back to it's original form.
 
 
 
@@ -724,6 +738,17 @@ JSON Server
 ========
 
 Z-Way makes a server for Raspberry PI and RaZberry.
+
+
+Terms
+========
+
+Term | Description
+-----|--------------------
+FLIRS | Frequently Listening Devices
+NIF | Node Information Frame
+SIS | Static ID-Server
+SUC | Static Update Controller
 
 
 
