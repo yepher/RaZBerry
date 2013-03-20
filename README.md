@@ -1,15 +1,38 @@
+ZWave Serial API Sniffing Journal
+========================
+
+These are my notes About ZWave and RaZerry. 
+
 RaZberry
 ========
-
-These are my notes About ZWave and RaZerry
 
 A RaZberry hardware solution is a combination of the Raspberry PI motherboard and the RaZberry Z-Wave transceiver daughter board. The daughter board is connected to the mother-board using the General IO Pin header connector of Raspberry PI. This GPIO interface offers Serial TX and RX signals, ground and 3.3 V VCC to power the Z-Wave transceiver board. 
 
 The RaZberry uses the ZM3102 Z-Wave transceiver from Sigma Designs. This module combines a "System on Chip" (SOC) with a 8051 micro controller, the Z-Wave transceiver and some IO interfaces the systems crystal and the SAW antenna filter.
 
 
-The micro controller of the SOC contains control code that operates the wireless transceiver and handles certain network level operations of Z-Wave. The communication with this code runs over the serial interface. There is a protocol specication for this interface that is issued by the
-manufacturer of the Z-Wave chip Sigma Designs that most of the Z-Wave transceivers on the market (e.g. USB Sticks) use. This interface specication - called Sigma Designs Serial API - is not a public document but available under Non Disclosure Agreement only as part of the Sigma Designs Systems Development Kit (SDK). The firmware of RaZberry is based on the SDK Version 4.54 but has enhanced the Sigma Designs Serial API in several ways.
+The micro controller of the SOC contains control code that operates the wireless transceiver and handles certain network level operations of Z-Wave. The communication with this code runs over the serial interface. There is a protocol specification for this interface that is issued by the
+Manufacturer of the Z-Wave chip Sigma Designs that most of the Z-Wave transceivers on the market (e.g., USB Sticks) use. This interface specification — called Sigma Designs Serial API - is not a public document but available under Non Disclosure Agreement only as part of the Sigma Designs Systems Development Kit (SDK). The firmware of RaZberry is based on the SDK Version 4.54 but has enhanced the Sigma Designs Serial API in several ways.
+
+
+ZWave
+=======
+
+Thanks to the folks over at the OpenZwave project I found out that the basis of ZWave is an ITU standard. A little Googling and it appears the standard of interest is ITU-T G.9959 (http://www.itu.int/rec/T-REC-G.9959/en).
+
+Have I mentioned that I love the project Open-ZWave?
+
+
+Thoughts on Application Design
+==============================
+
+I have written my fair share of Wireshark dissectors but I have alway had Wireshark to do the display of those captures. Not sure 
+
+Creating a ZWave sniffer will require the dissector but it will also require some user interface. This may be best split into to project. Similar to TShark (or tcpdump) that does the capture and the user interface application. Initially the UI will just dump to the console or to a file.
+
+or
+
+Maybe I can sort out someway to save the capture in PCAP format and still use Wireshark to decode it?
 
 
 Future Goals
@@ -52,7 +75,51 @@ Once you are done sniffing the serial port you will need to stop the Z-Way serve
 Add/Re-Include node to network
 ========
 
-The following data is sent to RaZberry board.
+The following data is sent/receive on the RaZberry board.
+
+This is some scratch data to try and manually decode what the binary packets actually mean.
+
+_Table: First frame sent from controller_
+
+|index|Direction|Value|Decode Information|
+|---|---|---|---|
+|1 |TX|0x01| |
+|2 |TX|0x03| Length? |
+|3 |TX|0x00| |
+|4 |TX|0x07| |
+|5 |TX|0xfb| Checksum - see _Generating a checksum_ below|
+
+
+_Table: (Switch Binary Set)_
+
+|index|Direction|Value|Decode Information|
+|---|---|---|---|
+|1  |TX|0x01|Controller? |
+|2  |TX|0x0a|Length? |
+|3  |TX|0x00| |
+|4  |TX|0x13| SendData? |
+|5  |TX|0x09|Node ID|
+|6  |TX|0x03|3-BinarySet (2-BinaryGet) |
+|7  |TX|0x25|BINARY_SWITCH? (0x30 BINARY_SENSOR?)|
+|8  |TX|0x01| Set value? (is this [SET, GET, REPORT]?)|
+|9  |TX|0x00|0x00-Switch off (0xff=ON) |
+|10 |TX|0x25| |
+|11 |TX|0x03| |
+|12 |TX|0xee|Checksum - see _Generating a checksum_ below|
+
+_Table: Random decodes_
+
+|nodeId|  |  | |  |Description|
+|---|---|---|---|---|---|
+|18|2|30|2|5|Sensor Binary Get|
+|9|3|25|1|ff 25|BINARY_SWITCH Set|
+|9|2|25|2|25|BINARY_SWITCH Get|
+|9|3|25|1|0 25|BINARY_SWITCH Set|
+|9|2|25|2|25|BINARY_SWITCH Get|
+|9|3|25|1|0 25|BINARY_SWITCH Set|
+|9|2|25|2|25|BINARY_SWITCH Get|
+
+_Raw sample capture_
 
 ```
 < 0x01
@@ -734,10 +801,67 @@ The following data is sent to RaZberry board.
 ```
 
 
+*Generating a checksum*
+
+```JAVA
+    private static byte generateChecksum(byte[] dataFrame) {
+        int offset = 0;
+        byte ret = data[offset];
+        for (int i = offset; i < data.length; i++) {
+            // Xor bytes
+            ret ^= data[i];
+        }
+        ret = (byte) (~ret);
+        return ret;
+    }
+    
+
+Usage:
+    byte[] zwaveFrame = new byte[] {0x01, 0x03, 0x20, /* (byte) 0xdc, */};
+    System.out.println("==============> Checksum: 0x" + Integer.toHexString(EIMApplication.generateChecksum(zwaveFrame)));
+
+
+```
+
+Device Classes
+===========
+
+To allow inter-operability between different Z-Wave devices from different manufacturers, each device must include certain well-defined functions above and beyond the ‘Basic’ command class.
+
+These requirements are called ‘Device Classes’. A device class refers to a typical device and defines which command classes that are mandatory for it to support.
+
+Device classes are organized into a three-layer hierarchy:
+
+Every device must belong to a basic device class
+Devices can be further specified by assigning them to a generic device class
+Further functionality can be defined by assigning the device to a specific device class
+Basic Device Class
+The ‘Basic’ device class simply defines a device as a Controller, Slave or Routing Slave. Therefore every device belongs to one basic device class.
+
+Generic Device Class
+The ‘Generic’ device class defines the basic functionality that the devices will support as a controller or slave. Current ‘Generic’ device classes are:
+
+    General controller (GENERIC_CONTROLLER)
+    Static controller (STATIC_CONTROLLER)
+    Binary switch (BINARY_SWITCH)
+    Multi level switch (MULTI_LEVEL_SWITCH)
+    Binary sensor (BINARY_SENSOR)
+    Multilevel-Sensor (MULTILEVEL_SENSOR)
+    Meter (METER)
+    Input controller (ENTRY_CONTROL)
+    Thermostat (THERMOSTAT)
+    Window Blind controller (WINDOW_COVERING)
+
+
+_Specific Device Class_
+
+Assigning a ‘Specific’ device class to a Z-Wave device allows it to further specify its functionality. Each ‘Generic’ device class refers to a number of specific device classes. You can decide to assign a specific device class, however, it only makes sense if the device really supports all functions of a ‘Specific’ device class.
+
+
 JSON Server
 ========
 
-Z-Way makes a server for Raspberry PI and RaZberry.
+Z-Way makes a server for Raspberry PI and RaZberry. It seems nice but I don't really have much interest in it. I am a little anti Node.js which is what so many ZWave things seem to be based on?
 
 
 Terms
@@ -756,3 +880,5 @@ More ZWave References
 ==========
 * Catching the Z-Wave - http://www.drdobbs.com/embedded-systems/catching-the-z-wave/193104353
 * Open ZWave - https://code.google.com/p/open-zwave/
+* An introduction to Z-Wave programming in C# - http://www.digiwave.dk/en/programming/an-introduction-to-z-wave-programming-in-c/
+* http://www.vesternet.com/resources/technology-indepth/how-z-wave-controllers-work
