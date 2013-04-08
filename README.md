@@ -44,110 +44,20 @@ I would like to make a ZWave decoder that will monitor the serial line and outpu
 ZWave Frames
 ========
 
+
 _Basic ZWave Frame_
 
-|Byte Position: |0|1|3|4|5|6|7|8|9|10|
-|---|---|---|---|---|---|---|---|---|---|---|
-| **Field:** |SOF|Length|Request/Response|ZWave Function (see ZWave Functions below)|
+|Byte Position: |0|1|3|4|…|N-2 N-1| N|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Field:** |Header|Length|Type (Request 0x00 or Response 0x01)|Command - ZWave Function (see ZWave Functions below)| Data … | 0x05 CallbackId| Checksum|
 
 
 ZWave Sample Decodes
 =====================
 
-The following data is sent/receive on the RaZberry board.
-
-This is some scratch data to try and manually decode what the binary packets actually mean.
-
-_Table: First frame sent from controller_
-
-|index|Direction|Value|Decode Information|
-|---|---|---|---|
-|1 |TX|0x01| SOF (see Preambles below)|
-|2 |TX|0x03| Length |
-|3 |TX|0x00| 0x00-Request|
-|4 |TX|0x07| SerialGetCapabilities |
-|5 |TX|0xfb| Checksum - see _Generating a checksum_ below|
-
-_Table: Response_
-
-|index|Direction|Value|Decode Information|
-|---|---|---|---|---|
-| |RX|0x06| ACK (see Preambles below)| |
-| |RX|0x01| SOF (see Preambles below)| |
-| |RX|0x2b| Length 43 Bytes | |
-| |RX|0x01| 0x01-Response | |
-| |RX|0x07| SerialGetCapabilities| |
-| |RX|0x04| Version | |
-| |RX|0x02| Revision | |
-| |RX|0x01| Manufacture ID1 | |
-| |RX|0x47| Manufacture ID1 | |
-| |RX|0x00| Product Type 1| |
-| |RX|0x02| Product Type 2| |
-| |RX|0x00| Product ID 1| |
-| |RX|0x03| Product ID 2| |
-| |RX|0xfe| | |
-| |RX|0x00| | |
-| |RX|0x16| | |
-| |RX|0x80| | |
-| |RX|0x0c| | |
-| |RX|0x00| | |
-| |RX|0x00| | |
-| |RX|0x00| | |
-| |RX|0xe3| | |
-| |RX|0x97| | |
-| |RX|0x7d| | |
-| |RX|0x80| | |
-| |RX|0x07| | |
-| |RX|0x00| | |
-| |RX|0x00| | |
-| |RX|0x80| | |
-| |RX|0x00| | |
-| |RX|0x00| | |
-| |RX|0x00| | |
-| |RX|0x00| | |
-| |RX|0x00| | |
-| |RX|0x00| | |
-| |RX|0x00| | |
-| |RX|0x00| | |
-| |RX|0x00| | |
-| |RX|0x00| | |
-| |RX|0x02| | |
-| |RX|0x00| | |
-| |RX|0x00| | |
-| |RX|0x80| | |
-| |RX|0x07| | |
-| |RX|0x00| | |
-| |RX|0x7c| Checksum| | 
-
-
-_Table: (Switch Binary Set)_
-
-|index|Direction|Value|Decode Information|
-|---|---|---|---|
-|1  |TX|0x01| SOF (see Preambles below)|
-|2  |TX|0x0a| Length |
-|3  |TX|0x00| 0x00-Request|
-|4  |TX|0x13| SendData |
-|5  |TX|0x09| Node ID|
-|6  |TX|0x03| 3-BinarySet (2-BinaryGet) |
-|7  |TX|0x25| BINARY_SWITCH|
-|8  |TX|0x01| Set value? (is this [SET, GET, REPORT]?)|
-|9  |TX|0x00| 0x00-Switch off (0xff=ON) |
-|10 |TX|0x25| |
-|11 |TX|0x03| |
-|12 |TX|0xee| Checksum - see _Generating a checksum_ below|
-
-_Table: Random decodes_
-
-|nodeId|  |  | |  |Description|
-|---|---|---|---|---|---|
-|18|2|30|2|5| Sensor Binary Get|
-|9|3|25|1|ff 25| BINARY_SWITCH Set|
-|9|2|25|2|25| BINARY_SWITCH Get|
-|9|3|25|1|0 25| BINARY_SWITCH Set|
-|9|2|25|2|25| BINARY_SWITCH Get|
-|9|3|25|1|0 25| BINARY_SWITCH Set|
-|9|2|25|2|25| BINARY_SWITCH Get|
+See Also: 
+* BinaryMotionSensorSamples.md
+* OtherSample.md
 
 
 
@@ -155,7 +65,7 @@ _Table: Random decodes_
 
 ```JAVA
     private static byte generateChecksum(byte[] dataFrame) {
-        int offset = 0;
+        int offset = 0; // Initialize this to 0xFF and no need to NOT result below
         byte ret = data[offset];
         for (int i = offset; i < data.length; i++) {
             // Xor bytes
@@ -191,21 +101,63 @@ The ‘Basic’ device class simply defines a device as a Controller, Slave or R
 Generic Device Class
 The ‘Generic’ device class defines the basic functionality that the devices will support as a controller or slave. Current ‘Generic’ device classes are:
 
-    General controller (GENERIC_CONTROLLER)
-    Static controller (STATIC_CONTROLLER)
-    Binary switch (BINARY_SWITCH)
-    Multi level switch (MULTI_LEVEL_SWITCH)
-    Binary sensor (BINARY_SENSOR)
-    Multilevel-Sensor (MULTILEVEL_SENSOR)
-    Meter (METER)
-    Input controller (ENTRY_CONTROL)
-    Thermostat (THERMOSTAT)
-    Window Blind controller (WINDOW_COVERING)
+|Hex Value|Value|Description |Key|
+|---|---|---|---|
+|0x01|1|General controller|BASIC TYPE CONTROLLER|
+|0x02|2|Static cont roller|STATIC CONTROLLER|
+|0x03|3| |BASIC TYPE SLAVE|
+|0x04|4| |BASIC TYPE ROUTING SLAVE|
+|0x08|8|Thermostat|GENERIC TYPE THERMOSTAT|
+|0x10|16|Binary switch|BINARY SWITCH|
+|0x11|17|Multi level switch|MULTI LEVEL SWITCH|
+|0x12|18| |GENERIC TYPE SWITCH REMOTE|
+|0x13|19| |GENERIC TYPE SWITCH TOGGLE|
+|0x17|23| |GENERIC TYPE SECURITY PANEL|
+|0x20|32|Binary sensor|BINARY SENSOR|
+|0x21|33 |Multilevel-Sensor|MULTILEVEL SENSOR|
+|0x31|49 |Meter|METER|
+| |64| |GENERIC TYPE ENTRY CONTROL|
 
 
 _Specific Device Class_
 
 Assigning a ‘Specific’ device class to a Z-Wave device allows it to further specify its functionality. Each ‘Generic’ device class refers to a number of specific device classes. You can decide to assign a specific device class, however, it only makes sense if the device really supports all functions of a ‘Specific’ device class.
+
+
+_Table: **ZWave Commands**_
+
+|Name|Hex|Dec|
+|---|---|---|
+|NO OPERATION|0x00|0|
+|NODE INFO|0x01|1|
+|REQUEST NODE INFO|0x02|2|
+|ASSIGN IDS|0x03|3|
+|FIND NODES IN RANGE|0x04|4|
+|GET NODES IN RANGE|0x05|5|
+|RANGE INFO|0x06|6|
+|CMD COMPLETE|0x07|7|
+|TRANSFER PRESENTATION|0x08|8|
+|TRANSFER NODE INFO|0x09|9|
+|TRANSFER RANGE INFO|0x0A|10|
+|TRANSFER END|0x0B|11|
+|ASSIGN RETURN ROUTE|0x0C|12|
+|NEW NODE REGISTERED|0x0D|13|
+|NEW RANGE REGISTERED|0x0E|14|
+|TRANSFER NEW PRIMARY COMPLETE|0x0F|15|
+|AUTOMATIC CONTROLLER UPDATE START|0x10|16|
+|SUC NODE ID|0x11|17|
+|SET SUC|0x12|18|
+|SET SUC ACK|0x13|19|
+|ASSIGN SUC RETURN ROUTE|0x14|20|
+|STATIC ROUTE REQUEST|0x15|21|
+|LOST|0x16|22|
+|ACCEPT LOST|0x17|23|
+|NOP POWER|0x18|24|
+|RESERVE NODE IDS|0x19|25|
+|RESERVED IDS|0x1A|26|
+|UNKNOWN|0x1B-0x1F|27-31|
+
+
 
 _Table: **ZWave Command Classes**_
 
@@ -247,8 +199,11 @@ _Table: **ZWave Command Classes**_
 |THERMOSTAT FAN STATE|0x45|69|
 |CLIMATE CONTROL SCHEDULE|0x46|70|
 |THERMOSTAT SETBACK|0x47|71|
+|TARIF CONFIG|0x4A|74|
+|TARIF TABLE MONITOR|0x4B|75|
 |COMMAND CLASS DOOR LOCK LOGGING|0x4C|76|
 |SCHEDULE ENTRY LOCK|0x4E|78|
+|ZIP 6LOWPAN|0x4F|79|
 |BASIC WINDOW COVERING|0x50|80|
 |MTP WINDOW COVERING|0x51|81|
 |MULTI CHANNEL V2|0x60|96|
@@ -259,7 +214,7 @@ _Table: **ZWave Command Classes**_
 |CONFIGURATION V2|0x70|112|
 |ALARM|0x71|113|
 |MANUFACTURER SPECIFIC|0x72|114|
-|POWERLEVEL|0x73|115|
+|POWER LEVEL|0x73|115|
 |PROTECTION|0x75|117|
 |PROTECTION V2|0x75|117|
 |LOCK|0x76|118|
@@ -305,6 +260,83 @@ _Table: **ZWave Command Classes**_
 |SENSOR CONFIGURATION|0x9E|158|
 |MARK|0xEF|239|
 |NON INTEROPERABLE|0xF0|240
+
+_Table: **ZWave Basic**_
+
+|Name|Hex|Dec|
+|---|---|---|
+|VERSION|0x01|1|
+|SET|0x01|1|
+|GET|0x02|2|
+|REPORT|0x03|3|
+
+_Table: **ZWave Thermostat Setpoint**_
+
+|Name|Hex|Dec|
+|---|---|---|
+|VERSION|0x01|1|
+|SET|0x01|1|
+|GET|0x02|2|
+|REPORT|0x03|3|
+|SUPPORTED GET|0x04|4|
+|SUPPORTED REPORT|0x05|5|
+
+
+_Table: **ZWave Wake Up**_
+
+|Name|Hex|Dec|
+|---|---|---|
+|VERSION|0x01|1|
+|INTERVAL SET|0x04|4|
+|INTERVAL GET|0x05|5|
+|INTERVAL REPORT|0x06|6|
+|NOTIFICATION|0x07|7|
+
+
+_Table: **ZWave Multi**_
+
+|Name|Hex|Dec|
+|---|---|---|
+|VERSION|0x01|1|
+|ENCAP|0x01|1|
+
+
+
+_Table: **ZWave Battery**_
+
+|Name|Hex|Dec|
+|---|---|---|
+|VERSION|0x01|1|
+|GET|0x02|2|
+|REPORT|0x03|3|
+
+_Table: **ZWave Transmit Options**_
+
+|Name|Hex|Dec|
+|---|---|---|
+|ACK|0x01|1|
+|LOW POWER|0x02|2|
+|AUTO ROUTE|0x04|4|
+|EXPLORE|0x20|32|
+
+
+_Table: **ZWave Parameter Types**_
+
+|Name|Hex|Dec|
+|---|---|---|
+|BYTE|0x01|1|
+|WORD|0x02|2|
+|DWORD|0x03|3|
+|BIT_24|0x04|4|
+|ARRAY|0x05|5|
+|BITMASK|0x06|6|
+|STRUCT_BYTE|0x07|7|
+|ENUM|0x08|8|
+|ENUM_ARRAY|0x09|9|
+|MULTI_ARRAY|0x0A|10|
+|CONST| 0x0B|11|
+|VARIANT|0x0C|12|
+|VARIANT_GROUP|0x0D|13|
 
 
 
@@ -504,12 +536,12 @@ ZWave Functions
 
 _Table: Preambles used see "man ascii"_
 
-|Name|Value|Description|
-|---|---|---|
-|SOF|0x01|Start Of Frame |
-|ACK|0x06|Message Ack|
-|NAK|0x15|Message NAK|
-|CAN|0x18|Cancel - Resend request|
+|Name|Hex|Dec|Description|
+|---|---|---|---|
+|SOF|0x01|1|Start Of Frame|
+|ACK|0x06|6|Message Ack|
+|NAK|0x15|21|Message NAK|
+|CAN|0x18|24|Cancel - Resend request|
 
 
 Capturing serial port data
@@ -571,6 +603,10 @@ More ZWave References
 * ZWave protocol version - http://wiki.micasaverde.com/index.php/ZWave_Protocol_Version
 * Aeonz Stick Driver - https://bitbucket.org/bradsjm/aeonzstickdriver/src/befa5117e290?at=default
 * ZWave device DB (far from complete) - http://www.pepper1.net/zwavedb/
+* In German does does seem like a nice introduction - http://www.digiwave.dk/
+* Python ZWave - http://z-wave.alsenet.com/index.php/Main_Page
+* ZWave insiders wiki - http://wiki.zwaveeurope.com/
+* ZWave Dimmer Test - https://code.google.com/p/i7afp/source/browse/#svn%2Ftrunk%2FSourcecode%2FZWave
 
 [1]: http://www.digikey.com/us/en/ph/SigmaDesigns/z-wave_zm3102.html        "ZM3102"
 [2]: http://www.raspberrypi.org/ "Raspberry Pi"
