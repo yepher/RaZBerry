@@ -236,17 +236,17 @@ void dumpbuff(int dir, char *buf, int buflen)
   {
     if (dir)
     {
-      fprintf(outfile, "> \t");
+      fprintf(outfile, "|>| ");
     }
     else
     {
-      fprintf(outfile, "< ");
+      fprintf(outfile, "|<| ");
     }
     ic=(unsigned char)buf[i];
-    fprintf(outfile, "0x%02x",ic);
+    fprintf(outfile, "0x%02x|%d| |",ic,ic);
     if ( (buf[i] >= 33) && (buf[i] <= 126) )
     {
-      fprintf(outfile, " (%c)",buf[i]);
+      //fprintf(outfile, " (%c)",buf[i]);
     }
     fprintf(outfile, "\n");
   }
