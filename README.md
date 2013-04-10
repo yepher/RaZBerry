@@ -1,7 +1,17 @@
+__Disclaimer:__ If you are under NDA with ZenSYS, although I wish I could, I cannot use your input. I want this to be an open definition of ZWave clear of NDA.
+
+If you are not under NDA and you see any errors or have anything to add I welcome your input. I will be glad to incorporate any pull requests you may offer or review any issues you choose to create.
+
 ZWave Serial API Sniffing Journal
 ========================
 
-These are my notes About ZWave mostly compiled with RaZberry, Open ZWave, and a lot of Google-ing. See the bottom of this file for a list of the most helpful resources that are not inline linked. 
+These are my notes About ZWave mostly compiled with RaZberry, Open ZWave, and a lot of Google-ing. See the bottom of this file for a list of the most helpful resources that are not inline linked.
+
+I have been asked why am I doing this. My answer is two fold:
+
+1. I want to make sure that my new favorite technology is secure. I don't want someone able to unlock my door because I am using ZWave. I feel I can accomplish this more throughly if I am open about my knowledge and others are open about theirs.
+2. I Want to be able to do things that currently are not available in any of the ZWave services. First I want to fully understand ZWave then I want to create cool apps and hardware that leverage that knowledge.
+
 
 Questions To Be Answered:
 ===================
@@ -12,6 +22,7 @@ Now I feel I have a good grasp on the Application Layer Serial protocol and just
 * How hard would it be to make my own OTA sniffer?
 * Can I take apart a zwave device and repurpose it as a sniffer?
 * I have found some views from ZNiffer on Youtube. How can I get more examples of decoded ZWave to verify my decodes are accurate?
+* There are a lot of really cruddy databases of ZWave devices. Should I create one that is maintainable by the community?
 
 
 RaZberry
@@ -24,6 +35,12 @@ The RaZberry uses the [ZM3102][1] Z-Wave transceiver from [SIGMA DESIGNS] [4]. T
 
 The micro controller of the SOC contains control code that operates the wireless transceiver and handles certain network level operations of Z-Wave. The communication with this code runs over the serial interface. There is a protocol specification for this interface that is issued by the
 Manufacturer of the Z-Wave chip Sigma Designs that most of the [Z-Wave transceivers] [5] on the market (e.g., USB Sticks) use. This interface specification — called Sigma Designs Serial API - is not a public document but available under Non Disclosure Agreement only as part of the Sigma Designs Systems Development Kit (SDK). The firmware of RaZberry is based on the SDK Version 4.54 but has enhanced the Sigma Designs Serial API in several ways.
+
+
+Almond+
+========
+
+I am a backer at the life-time service level of the KickStarter project [Almond+] [6]. I can't wait to get my hands on this product. I have very high hopes for this project.
 
 
 ZWave
@@ -631,4 +648,4 @@ More ZWave References
 [3]: http://razberry.zwave.me/ "RaZberry"
 [4]: http://www.sigmadesigns.com/ "SIGMA DESIGNS"
 [5]: http://www.itu.int/rec/T-REC-G.9959/en "Z-Wave transceivers"
-
+[6]: http://www.kickstarter.com/projects/2037429657/almond-80211ac-touchscreen-wifi-router-smart-home/posts/442531?ref=activity "Almond+"
