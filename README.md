@@ -1,7 +1,18 @@
 ZWave Serial API Sniffing Journal
 ========================
 
-These are my notes About ZWave mostly compiled with RaZerry. 
+These are my notes About ZWave mostly compiled with RaZberry, Open ZWave, and a lot of Google-ing. See the bottom of this file for a list of the most helpful resources that are not inline linked. 
+
+Questions To Be Answered:
+===================
+
+Now I feel I have a good grasp on the Application Layer Serial protocol and just need to finish documenting it. Here are some of my next big questions:
+
+* How can I get the ZWave [ZM3102][1] into "promiscuous" mode so I can see all OTA traffic?
+* How hard would it be to make my own OTA sniffer?
+* Can I take apart a zwave device and repurpose it as a sniffer?
+* I have found some views from ZNiffer on Youtube. How can I get more examples of decoded ZWave to verify my decodes are accurate?
+
 
 RaZberry
 ========
@@ -47,15 +58,16 @@ ZWave Frames
 
 _Basic ZWave Frame_
 
-|Byte Position: |0|1|3|4|…|N-2 N-1| N|
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **Field:** |Header|Length|Type (Request 0x00 or Response 0x01)|Command - ZWave Function (see ZWave Functions below)| Data … | 0x05 CallbackId| Checksum|
+|Byte Position: |0|1|3|4|…| N|
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Field:** |Header|Length|Type (Request 0x00 or Response 0x01)|Command - ZWave Function (see ZWave Functions below)| Data … | Checksum|
 
 
 ZWave Sample Decodes
 =====================
 
 See Also: 
+* binarySwitchSamples.md
 * BinaryMotionSensorSamples.md
 * OtherSample.md
 
@@ -124,7 +136,7 @@ _Specific Device Class_
 Assigning a ‘Specific’ device class to a Z-Wave device allows it to further specify its functionality. Each ‘Generic’ device class refers to a number of specific device classes. You can decide to assign a specific device class, however, it only makes sense if the device really supports all functions of a ‘Specific’ device class.
 
 
-_Table: **ZWave Commands**_
+_Table: **0x01 – 0x1F ZWave Protocol Commands**_
 
 |Name|Hex|Dec|
 |---|---|---|
@@ -161,9 +173,12 @@ _Table: **ZWave Commands**_
 
 _Table: **ZWave Command Classes**_
 
+A Command Class can contain up to 255 different Commands. 
+
+__NOTE:__ _If the Command Class field is set to 0xF1 - 0xFF then there is another Command Class byte added_. This allows for future extensions of the Command Classes. The strategy of having an Extended Command Class followed by the actual command identifier provides the possibility of having more than 4000 Command Classes.
+
 |Name|Hex|Dec|
 |---|---|---|
-|NO OPERATION|0x00|0|
 |BASIC|0x20|32|
 |CONTROLLER REPLICATION|0x21|33|
 |APPLICATION STATUS|0x22|34|
@@ -260,6 +275,7 @@ _Table: **ZWave Command Classes**_
 |SENSOR CONFIGURATION|0x9E|158|
 |MARK|0xEF|239|
 |NON INTEROPERABLE|0xF0|240
+|EXTENDED APPLICATION COMMANDS|0xF1 – 0xFF|241 - 255|
 
 _Table: **ZWave Basic**_
 
@@ -591,6 +607,7 @@ SUC | Static Update Controller
 
 More ZWave References
 ==========
+* ZWave Overview - http://dkc1.digikey.com/us/en/tod/SigmaDesigns/Z-Wave/Z-Wave.html
 * linuxmce ZWave API - http://wiki.linuxmce.org/index.php/ZWave_API
 * Catching the Z-Wave - http://www.drdobbs.com/embedded-systems/catching-the-z-wave/193104353
 * Open ZWave - https://code.google.com/p/open-zwave/
@@ -607,6 +624,7 @@ More ZWave References
 * Python ZWave - http://z-wave.alsenet.com/index.php/Main_Page
 * ZWave insiders wiki - http://wiki.zwaveeurope.com/
 * ZWave Dimmer Test - https://code.google.com/p/i7afp/source/browse/#svn%2Ftrunk%2FSourcecode%2FZWave
+* ZWave Prezi Introduction - http://prezi.com/839cbmtlz-3n/z-wave/
 
 [1]: http://www.digikey.com/us/en/ph/SigmaDesigns/z-wave_zm3102.html        "ZM3102"
 [2]: http://www.raspberrypi.org/ "Raspberry Pi"

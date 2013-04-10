@@ -3,6 +3,43 @@ ZWave Command Class Definitions
 
 I've looked at a lot of ZWave products and I've read a lot of information about it. As a result this document is a definition of ZWave command classes I've been able to understand so far. As more command classes are discovered they will be added here.
 
+
+What is a Command Class
+====================
+
+Z-Wave command classes are a set of definitions that enable interoperability between devices. A controlling device and a slave device must have a common set of commands classes to be able to interoperate.
+
+Z-Wave command classes are used by the application layer.
+
+This table shows how command class identifiers are divided by range.
+
+|Command Class|Description|
+|---|---|
+|0x00|No Operation |
+|0x01–0x1F|Reserved by the ZWave protocol|
+|0x20–0xEE|Application Command Classes|
+|0xEF|Support/Control Mark|
+|0xF0|Non interoperable|
+|0xF1–0xFF|Extended Application Command Classes|
+
+__Side Note__: Command classes are a single byte when they are below 0xF1. _These kinds of definitions drive me crazy_. A much more extensible way to design this protocol without sacrificing over the air size would be to use techniques like UTF-8 uses or better WBXML's mb-u-int32. Why not look at the MSB of the byte and if it is set there is another byte that follows. This can allows for very large numbers in a very compact space. _[Stepping down off of soap box now.]_
+
+Common Command Class Header
+=======================
+
+|Byte Offset|Size|Description
+|---|---|---|
+|0|0x20–0xEE|Command Class|
+
+
+Extended Command Class Header
+=============================
+
+
+
+Computer Readable Def
+=====================
+
 FIELD_PARAMETERS - This is sometimes a dictionary and other times an array of dictionaries. This should always be the later.
 
 
@@ -4982,3 +5019,6 @@ FIELD_PARAMETERS - This is sometimes a dictionary and other times an array of di
 }
 
 ```
+
+
+
