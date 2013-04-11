@@ -268,7 +268,8 @@ void dumpZBuff(int dir)
 	fprintf(outfile, "|---|---|---|---|");
 
 	int i;
-	int ic;
+	unsigned char ic;
+	fprintf(outfile, "---- zFrameLen=%d", zFrameLen);
 	
 	for (i=0; i > zFrameLen; i++) {
 		if (dir)
@@ -326,6 +327,7 @@ void dumpZBuff(int dir)
 			}
 		    
 		}  else if (i == 3) {
+			// Function
 			fprintf(outfile, "0x%02x|%d|TODO: Decode Func |",ic,ic);
 		} else if (i == zFrameLen-1) {
 			// TODO: calculate and verify checksum
@@ -346,7 +348,7 @@ void dumpZBuff(int dir)
 
 void dumpbuff(int dir, char *buf, int buflen) {
 	int i;
-	int ic;
+	unsigned char ic;
 	
 	for (i=0;i<buflen;i++) {
   		ic=(unsigned char)buf[i];
@@ -355,7 +357,7 @@ void dumpbuff(int dir, char *buf, int buflen) {
   				// This is a single byte frame. Pack it and dump it
   				zFrameLen = 1;
   				zFramePos = 0;
-  				zFramBuf[zFramePos] = ic;
+  				zFramBuf[zFramePos++] = ic;
   				dumpZBuff(dir);
   				resetZFrame();
   				continue;
