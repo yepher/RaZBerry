@@ -270,7 +270,7 @@ void dumpZBuff(int dir)
 
 	int i;
 	unsigned char ic;
-	fprintf(outfile, "---- zFrameLen=%d", zFrameLen);
+	// fprintf(outfile, "---- zFrameLen=%d", zFrameLen);
 	
 	for (i=0; i < zFrameLen; i++) {
 		if (dir)
@@ -370,14 +370,14 @@ void dumpbuff(int dir, char *buf, int buflen) {
   			}
   		} else if (zFramePos == 1) {
   			// Read Len
-  			zFrameLen = ic;
+  			zFrameLen = ic+2;
   			zFramBuf[zFramePos++] = ic;
   		} else {
   			zFramBuf[zFramePos++] = ic;
   		}
   		
   		// ASSERT zFrameLen < 255
-  		if (zFrameLen > 0 && zFramePos == (zFrameLen+2)) {
+  		if (zFrameLen > 0 && zFramePos == (zFrameLen)) {
   			dumpZBuff(dir);
   			resetZFrame();
   		}
