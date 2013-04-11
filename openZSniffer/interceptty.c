@@ -266,7 +266,7 @@ void dumpZBuff(int dir)
 {
     fprintf(outfile, "\n\n");
 	fprintf(outfile, "|Direction|Hex|Dec|Description|\n");
-	fprintf(outfile, "|---|---|---|---|");
+	fprintf(outfile, "|---|---|---|---|\n");
 
 	int i;
 	unsigned char ic;
@@ -330,7 +330,7 @@ void dumpZBuff(int dir)
 		}  else if (i == 3) {
 			// Function
 			fprintf(outfile, "0x%02x|%d|TODO: Decode Func |",ic,ic);
-		} else if (i == zFrameLen-1) {
+		} else if (i == (zFrameLen-1)) {
 			// TODO: calculate and verify checksum
 			
 			// Checksum
@@ -342,8 +342,7 @@ void dumpZBuff(int dir)
 			fprintf(outfile, "0x%02x|%d| |",ic,ic);
 		}
 		
-			fprintf(outfile, "\n");
-	
+		fprintf(outfile, "\n");
 	}
 
 	fprintf(outfile, "\n\n");
@@ -378,7 +377,7 @@ void dumpbuff(int dir, char *buf, int buflen) {
   		}
   		
   		// ASSERT zFrameLen < 255
-  		if (zFrameLen > 0 && zFramePos == (zFrameLen-1)) {
+  		if (zFrameLen > 0 && zFramePos == (zFrameLen+1)) {
   			dumpZBuff(dir);
   			resetZFrame();
   		}
