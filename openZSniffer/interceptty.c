@@ -340,6 +340,8 @@ void dumpZBuff(int dir)
 			// Dump value
 			fprintf(outfile, "0x%02x|%d| |",ic,ic);
 		}
+		
+			fprintf(outfile, "\n");
 	
 	}
 
@@ -347,16 +349,17 @@ void dumpZBuff(int dir)
 }
 
 void dumpbuff(int dir, char *buf, int buflen) {
+	
 	int i;
 	unsigned char ic;
 	
 	for (i=0;i<buflen;i++) {
   		ic=(unsigned char)buf[i];
   		if (zFramePos == 0) {
+  			fprintf(outfile, "decode header: 0x%02x ",ic);
   			if (ic != SOC) {
   				// This is a single byte frame. Pack it and dump it
   				zFrameLen = 1;
-  				zFramePos = 0;
   				zFramBuf[zFramePos++] = ic;
   				dumpZBuff(dir);
   				resetZFrame();
@@ -366,9 +369,11 @@ void dumpbuff(int dir, char *buf, int buflen) {
   			}
   		} else if (zFramePos == 1) {
   			// Read Len
+  			fprintf(outfile, "decode Len: 0x%02x ",ic);
   			zFrameLen = ic;
   			zFramBuf[zFramePos++] = ic;
   		} else {
+  		    fprintf(outfile, "decode other: 0x%02x ",ic);
   			zFramBuf[zFramePos++] = ic;
   		}
   		
