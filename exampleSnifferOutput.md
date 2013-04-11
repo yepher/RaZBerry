@@ -1,0 +1,916 @@
+ interceptty -s 'ispeed 115200 ospeed 115200' /dev/ttyAMA0 /tmp/ttyAMA0 |tee /tmp/zwave2.out
+
+
+0x01,  0x03,  0x00,  0x07,  0xfb,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x03|3|Length=3 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x07|7|TODO: Decode Func |
+|<| 0xfb|251|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x2b,  0x01,  0x07,  0x04,  0x02,  0x01,  0x47,  0x00,  0x02,  0x00,  0x03,  0xfe,  0x00,  0x16,  0x80,  0x0c,  0x00,  0x00,  0x00,  0xe3,  0x97,  0x7d,  0x80,  0x07,  0x00,  0x00,  0x80,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x02,  0x00,  0x00,  0x80,  0x07,  0x00,  0x7c,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x2b|43|Length=43 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x07|7|TODO: Decode Func |
+|>| 0x04|4| |
+|>| 0x02|2| |
+|>| 0x01|1| |
+|>| 0x47|71| |
+|>| 0x00|0| |
+|>| 0x02|2| |
+|>| 0x00|0| |
+|>| 0x03|3| |
+|>| 0xfe|254| |
+|>| 0x00|0| |
+|>| 0x16|22| |
+|>| 0x80|128| |
+|>| 0x0c|12| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0xe3|227| |
+|>| 0x97|151| |
+|>| 0x7d|125| |
+|>| 0x80|128| |
+|>| 0x07|7| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x80|128| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x02|2| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x80|128| |
+|>| 0x07|7| |
+|>| 0x00|0| |
+|>| 0x7c|124|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x05,  0x00,  0x06,  0x0a,  0x0a,  0xfc,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x05|5|Length=5 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x06|6|TODO: Decode Func |
+|<| 0x0a|10| |
+|<| 0x0a|10| |
+|<| 0xfc|252|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x05,  0x01,  0x06,  0x0a,  0x0a,  0xfd,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x05|5|Length=5 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x06|6|TODO: Decode Func |
+|>| 0x0a|10| |
+|>| 0x0a|10| |
+|>| 0xfd|253|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x03,  0x00,  0xd2,  0x2e,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x03|3|Length=3 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0xd2|210|TODO: Decode Func |
+|<| 0x2e|46|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x03,  0x00,  0x20,  0xdc,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x03|3|Length=3 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x20|32|TODO: Decode Func |
+|<| 0xdc|220|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x08,  0x01,  0x20,  0x01,  0x07,  0xab,  0x22,  0x24,  0x7d,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x08|8|Length=8 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x20|32|TODO: Decode Func |
+|>| 0x01|1| |
+|>| 0x07|7| |
+|>| 0xab|171| |
+|>| 0x22|34| |
+|>| 0x24|36| |
+|>| 0x7d|125|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x03,  0x00,  0x05,  0xf9,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x03|3|Length=3 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x05|5|TODO: Decode Func |
+|<| 0xf9|249|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x01,  0x05,  0x06,  0xf9,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x04|4|Length=4 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x05|5|TODO: Decode Func |
+|>| 0x06|6| |
+|>| 0xf9|249|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x03,  0x00,  0x15,  0xe9,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x03|3|Length=3 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x15|21|TODO: Decode Func |
+|<| 0xe9|233|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x10,  0x01,  0x15,  0x5a,  0x2d,  0x57,  0x61,  0x76,  0x65,  0x20,  0x33,  0x2e,  0x34,  0x32,  0x00,  0x01,  0x93,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x10|16|Length=16 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x15|21|TODO: Decode Func |
+|>| 0x5a|90| |
+|>| 0x2d|45| |
+|>| 0x57|87| |
+|>| 0x61|97| |
+|>| 0x76|118| |
+|>| 0x65|101| |
+|>| 0x20|32| |
+|>| 0x33|51| |
+|>| 0x2e|46| |
+|>| 0x34|52| |
+|>| 0x32|50| |
+|>| 0x00|0| |
+|>| 0x01|1| |
+|>| 0x93|147|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x03,  0x00,  0x56,  0xaa,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x03|3|Length=3 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x56|86|TODO: Decode Func |
+|<| 0xaa|170|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x01,  0x56,  0x01,  0xad,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x04|4|Length=4 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x56|86|TODO: Decode Func |
+|>| 0x01|1| |
+|>| 0xad|173|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x03,  0x00,  0x02,  0xfe,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x03|3|Length=3 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x02|2|TODO: Decode Func |
+|<| 0xfe|254|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x25,  0x01,  0x02,  0x05,  0x00,  0x1d,  0xff,  0xff,  0xfb,  0xff,  0xbe,  0x84,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x03,  0x01,  0xfd,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x25|37|Length=37 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x02|2|TODO: Decode Func |
+|>| 0x05|5| |
+|>| 0x00|0| |
+|>| 0x1d|29| |
+|>| 0xff|255| |
+|>| 0xff|255| |
+|>| 0xfb|251| |
+|>| 0xff|255| |
+|>| 0xbe|190| |
+|>| 0x84|132| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x00|0| |
+|>| 0x03|3| |
+|>| 0x01|1| |
+|>| 0xfd|253|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x00,  0x41,  0x01,  0xbb,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x04|4|Length=4 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x41|65|TODO: Decode Func |
+|<| 0x01|1| |
+|<| 0xbb|187|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x09,  0x01,  0x41,  0x92,  0x16,  0x00,  0x02,  0x02,  0x01,  0x33,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x09|9|Length=9 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x41|65|TODO: Decode Func |
+|>| 0x92|146| |
+|>| 0x16|22| |
+|>| 0x00|0| |
+|>| 0x02|2| |
+|>| 0x02|2| |
+|>| 0x01|1| |
+|>| 0x33|51|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x00,  0x62,  0x01,  0x98,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x04|4|Length=4 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x62|98|TODO: Decode Func |
+|<| 0x01|1| |
+|<| 0x98|152|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x01,  0x62,  0x00,  0x98,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x04|4|Length=4 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x62|98|TODO: Decode Func |
+|>| 0x00|0| |
+|>| 0x98|152|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x00,  0x41,  0x02,  0xb8,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x04|4|Length=4 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x41|65|TODO: Decode Func |
+|<| 0x02|2| |
+|<| 0xb8|184|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x09,  0x01,  0x41,  0xd2,  0x94,  0x00,  0x03,  0x11,  0x01,  0xe3,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x09|9|Length=9 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x41|65|TODO: Decode Func |
+|>| 0xd2|210| |
+|>| 0x94|148| |
+|>| 0x00|0| |
+|>| 0x03|3| |
+|>| 0x11|17| |
+|>| 0x01|1| |
+|>| 0xe3|227|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x00,  0x62,  0x02,  0x9b,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x04|4|Length=4 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x62|98|TODO: Decode Func |
+|<| 0x02|2| |
+|<| 0x9b|155|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x01,  0x62,  0x00,  0x98,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x04|4|Length=4 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x62|98|TODO: Decode Func |
+|>| 0x00|0| |
+|>| 0x98|152|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x00,  0x41,  0x03,  0xb9,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x04|4|Length=4 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x41|65|TODO: Decode Func |
+|<| 0x03|3| |
+|<| 0xb9|185|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x09,  0x01,  0x41,  0x52,  0xdc,  0x00,  0x04,  0x40,  0x03,  0x7f,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x09|9|Length=9 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x41|65|TODO: Decode Func |
+|>| 0x52|82| |
+|>| 0xdc|220| |
+|>| 0x00|0| |
+|>| 0x04|4| |
+|>| 0x40|64| |
+|>| 0x03|3| |
+|>| 0x7f|127|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x00,  0x62,  0x03,  0x9a,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x04|4|Length=4 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x62|98|TODO: Decode Func |
+|<| 0x03|3| |
+|<| 0x9a|154|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x01,  0x62,  0x00,  0x98,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x04|4|Length=4 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x62|98|TODO: Decode Func |
+|>| 0x00|0| |
+|>| 0x98|152|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x00,  0x41,  0x04,  0xbe,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x04|4|Length=4 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x41|65|TODO: Decode Func |
+|<| 0x04|4| |
+|<| 0xbe|190|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x09,  0x01,  0x41,  0xd2,  0x9c,  0x00,  0x04,  0x08,  0x06,  0xf2,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x09|9|Length=9 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x41|65|TODO: Decode Func |
+|>| 0xd2|210| |
+|>| 0x9c|156| |
+|>| 0x00|0| |
+|>| 0x04|4| |
+|>| 0x08|8| |
+|>| 0x06|6| |
+|>| 0xf2|242|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x00,  0x62,  0x04,  0x9d,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x04|4|Length=4 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x62|98|TODO: Decode Func |
+|<| 0x04|4| |
+|<| 0x9d|157|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x01,  0x62,  0x00,  0x98,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x04|4|Length=4 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x62|98|TODO: Decode Func |
+|>| 0x00|0| |
+|>| 0x98|152|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x00,  0x41,  0x05,  0xbf,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x04|4|Length=4 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x41|65|TODO: Decode Func |
+|<| 0x05|5| |
+|<| 0xbf|191|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x09,  0x01,  0x41,  0x52,  0xdc,  0x00,  0x04,  0x40,  0x03,  0x7f,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x09|9|Length=9 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x41|65|TODO: Decode Func |
+|>| 0x52|82| |
+|>| 0xdc|220| |
+|>| 0x00|0| |
+|>| 0x04|4| |
+|>| 0x40|64| |
+|>| 0x03|3| |
+|>| 0x7f|127|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x00,  0x62,  0x05,  0x9c,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x04|4|Length=4 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x62|98|TODO: Decode Func |
+|<| 0x05|5| |
+|<| 0x9c|156|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x01,  0x62,  0x00,  0x98,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x04|4|Length=4 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x62|98|TODO: Decode Func |
+|>| 0x00|0| |
+|>| 0x98|152|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x00,  0x41,  0x06,  0xbc,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x04|4|Length=4 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x41|65|TODO: Decode Func |
+|<| 0x06|6| |
+|<| 0xbc|188|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x09,  0x01,  0x41,  0xd1,  0x8c,  0x00,  0x04,  0x10,  0x01,  0xfe,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x09|9|Length=9 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x41|65|TODO: Decode Func |
+|>| 0xd1|209| |
+|>| 0x8c|140| |
+|>| 0x00|0| |
+|>| 0x04|4| |
+|>| 0x10|16| |
+|>| 0x01|1| |
+|>| 0xfe|254|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x00,  0x62,  0x06,  0x9f,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x04|4|Length=4 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x62|98|TODO: Decode Func |
+|<| 0x06|6| |
+|<| 0x9f|159|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x01,  0x62,  0x00,  0x98,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x04|4|Length=4 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x62|98|TODO: Decode Func |
+|>| 0x00|0| |
+|>| 0x98|152|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x00,  0x41,  0x07,  0xbd,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x04|4|Length=4 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x41|65|TODO: Decode Func |
+|<| 0x07|7| |
+|<| 0xbd|189|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x09,  0x01,  0x41,  0xd2,  0x94,  0x00,  0x03,  0x11,  0x01,  0xe3,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x09|9|Length=9 |
+|>| 0x01|1|Type=RESPONSE |
+|>| 0x41|65|TODO: Decode Func |
+|>| 0xd2|210| |
+|>| 0x94|148| |
+|>| 0x00|0| |
+|>| 0x03|3| |
+|>| 0x11|17| |
+|>| 0x01|1| |
+|>| 0xe3|227|Checksum |
+
+
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x04,  0x00,  0x62,  0x07,  0x9e,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1|__Header=SOC__|
+|<| 0x04|4|Length=4 |
+|<| 0x00|0|Type=REQUEST |
+|<| 0x62|98|TODO: Decode Func |
+|<| 0x07|7| |
+|<| 0x9e|158|Checksum |
+
+
+
+
+
+
