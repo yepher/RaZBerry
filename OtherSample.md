@@ -2,6 +2,147 @@ The following data is sent/receive on the RaZberry board.
 
 This is some scratch data to try and manually decode what the binary packets actually mean.
 
+
+Promiscuous Data?
+================
+
+Set Promiscuous
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|<| 0x01|1| |
+|<| 0x04|4| |
+|<| 0x00|0| |
+|<| 0xd0|208| |
+|<| 0xff|255| |
+|<| 0xd4|212| |
+|>| 0x06|6| |
+
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x08|8|Length=8 |
+|>| 0x00|0|Type=REQUEST|
+|>| 0x04|4|Func=ApplicationCommandHandler |
+|>| 0x00|0| |
+|>| 0x28|40| |
+|>| 0x02|2| |
+|>| 0x84|132| |
+|>| 0x07|7| |
+|>| 0x5a|90|Checksum |
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x08|8|Length=8 |
+|>| 0x00|0|Type=REQUEST|
+|>| 0x04|4|Func=ApplicationCommandHandler |
+|>| 0x00|0| |
+|>| 0x28|40| |
+|>| 0x02|2| |
+|>| 0x84|132| |
+|>| 0x07|7| |
+|>| 0x5a|90| |
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x08|8|Length=8 |
+|>| 0x00|0|Type=REQUEST|
+|>| 0x04|4|Func=ApplicationCommandHandler |
+|>| 0x00|0| |
+|>| 0x28|40| |
+|>| 0x02|2| |
+|>| 0x84|132| |
+|>| 0x07|7| |
+|>| 0x5a|90| |
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x08|8|Length=8 |
+|>| 0x00|0|Type=REQUEST|
+|>| 0x04|4|Func=ApplicationCommandHandler |
+|>| 0x00|0| |
+|>| 0x28|40| |
+|>| 0x02|2| |
+|>| 0x84|132| |
+|>| 0x07|7| |
+|>| 0x5a|90| |
+
+
+
+
+Set Temp
+=========
+
+Node 4 - Thermostat - TraneThermostat
+Node Type: 040806
+Command Classes: ["40", "42", "43", "44", "45", "70", "31", "86", "81", "72", "76", "85"]
+
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__ |
+|>| 0x09|9| |
+|>| 0x00|0| |
+|>| 0x04|4| |
+|>| 0x00|0| |
+|>| 0x04|4|Node=4 |
+|>| 0x03|3| |
+|>| 0x42|66| |
+|>| 0x03|3| |
+|>| 0x01|1| |
+|>| 0xb5|181| |
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__ |
+|>| 0x09|9| |
+|>| 0x00|0| |
+|>| 0x04|4| |
+|>| 0x00|0| |
+|>| 0x04|4|Node=4 |
+|>| 0x03|3| |
+|>| 0x42|66| |
+|>| 0x03|3| |
+|>| 0x01|1| |
+|>| 0xb5|181| |
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__ |
+|>| 0x09|9| |
+|>| 0x00|0| |
+|>| 0x04|4|Node=4 |
+|>| 0x00|0| |
+|>| 0x04|4| |
+|>| 0x03|3| |
+|>| 0x42|66| |
+|>| 0x03|3| |
+|>| 0x01|1| |
+|>| 0xb5|181| |
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__ |
+|>| 0x09|9| |
+|>| 0x00|0| |
+|>| 0x04|4| |
+|>| 0x00|0| |
+|>| 0x04|4|Node=4 |
+|>| 0x03|3| |
+|>| 0x42|66| |
+|>| 0x03|3| |
+|>| 0x01|1| |
+|>| 0xb5|181| |
+
+
+
+
+
+
 _Table: Switch Multi Level Switch Off_
 
 |Value |Meaning |

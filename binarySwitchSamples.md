@@ -211,10 +211,10 @@ Turn Light Switch On from Controller
 
 Light Switch ?On?
 =========
-|>| 0x01|1| |
-|>| 0x10|16| |
+|>| 0x01|1|__Header=SOC__|
+|>| 0x10|16|Length=16 |
 |>| 0x00|0|Type=REQUEST|
-|>| 0x49|73| |
+|>| 0x49|73|Func=ApplicationUpdate|
 |>| 0x84|132| |
 |>| 0x2b|43| |
 |>| 0x0a|10| |
@@ -228,7 +228,7 @@ Light Switch ?On?
 |>| 0x86|134| |
 |>| 0x72|114| |
 |>| 0x77|119| |
-|>| 0x94|148| |
+|>| 0x94|148|Checksum|
 |<| 0x06|6|__ACK__|
 
 

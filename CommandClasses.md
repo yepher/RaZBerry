@@ -24,16 +24,34 @@ This table shows how command class identifiers are divided by range.
 
 __Side Note__: Command classes are a single byte when they are below 0xF1. _These kinds of definitions drive me crazy_. A much more extensible way to design this protocol without sacrificing over the air size would be to use techniques like UTF-8 uses or better WBXML's mb-u-int32. Why not look at the MSB of the byte and if it is set there is another byte that follows. This can allows for very large numbers in a very compact space. _[Stepping down off of soap box now.]_
 
-Common Command Class Header
+Generic Command Class Header
 =======================
 
 |Byte Offset|Size|Description
 |---|---|---|
 |0|0x20–0xEE|Command Class|
-
+|1| Command|
+|2|Command Data 1|
+|3| More Command Data…|
+|N|Command Data N|
 
 Extended Command Class Header
 =============================
+
+|Byte Offset|Size|Description
+|---|---|---|
+|0|0xF1–0xFF|Command Class|
+|1| Extended Command Class 0x00-0xFF|
+|2| Command|
+|3|Command Data 1|
+|4| More Command Data…|
+|N|Command Data N|
+
+
+Binary Switch Command Class 37 [0x25]
+=================
+
+__See__: [Binary Switch Decode Sample][1] for a sample decode of Binary Switch commands.
 
 
 
@@ -5020,5 +5038,7 @@ FIELD_PARAMETERS - This is sometimes a dictionary and other times an array of di
 
 ```
 
+
+[1]: https://github.com/yepher/RaZBerry/blob/master/binarySwitchSamples.md "Binary Switch Decode Sample"
 
 
