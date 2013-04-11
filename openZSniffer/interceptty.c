@@ -377,7 +377,7 @@ void dumpbuff(int dir, char *buf, int buflen) {
   		}
   		
   		// ASSERT zFrameLen < 255
-  		if (zFrameLen > 0 && zFramePos == (zFrameLen+1)) {
+  		if (zFrameLen > 0 && zFramePos == (zFrameLen+2)) {
   			dumpZBuff(dir);
   			resetZFrame();
   		}
