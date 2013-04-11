@@ -645,6 +645,11 @@ void dumpZBuff(int dir)
 			fprintf(outfile, "0x%02x|%d|function=",ic,ic);
 			printFuncName(ic);
 			fprintf(outfile, " |");
+			
+			if (ic == 0x04) {
+				// todo parse ApplicationCommandHandler
+			}
+			
 		} else if (i == (zFrameLen-1)) {
 			// TODO: calculate and verify checksum
 			
