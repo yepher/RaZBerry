@@ -1,16 +1,6 @@
-/*     interceptty.c
- *
- * This file is an adaptation of ttysnoops.c, from the ttysnoop-0.12d
- * package It was originally written by Carl Declerck, Ulrich
- * Callmeir, Carl Declerck, and Josh Bailey.  They deserve all of the
- * credit for the clever parts.  I, on the other hand, deserve all of
- * the blame for whatever I broke.  Please do not email the original
- * authors of ttysnoop about any problems with interceptty.
- *
- */
-
-/* $Id: interceptty.c,v 7.12 2004/09/05 23:01:35 gifford Exp $ */
-
+/**
+    This is adapted from interceptty.
+**/
 #include "config.h"
 
 #include <sys/types.h>
@@ -34,17 +24,25 @@
 
 #include "bsd-openpty.h"
 #include "common.h"
+#include "zwavecore.h"
+
 
 #ifndef O_NOCTTY
 #define O_NOCTTY 0
 #endif
 
+#define BUFF_SIZE	256
+
 #define DEFAULT_FRONTEND "/tmp/interceptty"
 
 struct sockaddr_in inet_resolve(const char *sockname);
 
+/* ZWave Decode  */
+char zFramBuf[BUFF_SIZE];  // ZWave frame accumulator
+int zFrameLen = 0; // Expected frame length
+int zFramePos = 0; // Current position in zwave frame
 
-#define BUFF_SIZE	256
+/* Other variables */
 
 char buff[BUFF_SIZE];
 
@@ -227,7 +225,7 @@ gid_t find_gid(const char *g)
 
 /* main program */
 
-void dumpbuff(int dir, char *buf, int buflen)
+void orig_dumpbuff(int dir, char *buf, int buflen)
 {
   int i;
   int ic;
@@ -251,6 +249,133 @@ void dumpbuff(int dir, char *buf, int buflen)
     fprintf(outfile, "\n");
   }
   fflush(outfile);
+}
+
+void resetZFrame() {
+	zFrameLen = 0;
+	zFramePos = 0;
+}
+
+/*
+char zFramBuf[BUFF_SIZE];  // ZWave frame accumulator
+int zFrameLen = 0; // Expected frame length
+int zFramePos = 0; // Current position in zwave frame
+
+*/
+void dumpZBuff(int dir)
+{
+	fprintf(outfile, "|Direction|Hex|Dec|Description|\n");
+	fprintf(outfile, "|---|---|---|---|");
+
+	int i;
+	int ic;
+	
+	for (i=0; i > zFrameLen; i++) {
+		if (dir)
+		{
+		  fprintf(outfile, "|>| ");
+		}
+		else
+		{
+		  fprintf(outfile, "|<| ");
+		}
+		
+		/*
+		SOF|0x01|1|Start Of Frame|
+		|ACK|0x06|6|Message Ack|
+		|NAK|0x15|21|Message NAK|
+		|CAN|0x18|24|Cancel - Resend request|
+		*/
+		ic=(unsigned char)zFramBuf[i];
+		if (i==0) {
+			// HEADER
+			switch(ic) {
+			case 0x01: {
+				fprintf(outfile, "0x%02x|%d|__Header=SOC__|",ic,ic);
+				break;
+			}
+			case 0x06: {
+				fprintf(outfile, "0x%02x|%d|__Header=ACK__|",ic,ic);
+				break;
+			}
+			case 0x15: {
+				fprintf(outfile, "0x%02x|%d|__Header=NAK__|",ic,ic);
+				break;
+			}
+			case 0x18: {
+				fprintf(outfile, "0x%02x|%d|__Header=CAN__ resend|",ic,ic);
+				break;
+			}
+			default: {
+				fprintf(outfile, "0x%02x|%d|ERROR: Unknown header |",ic,ic);
+				break;
+			}
+			}
+			
+		} else if (i == 1) {
+			// Frame Len
+		    fprintf(outfile, "0x%02x|%d|Length=%d |",ic,ic, ic);
+		} else if (i == 2) {
+			// Type
+			if (ic == 0x00) {
+				fprintf(outfile, "0x%02x|%d|Type=REQUEST |",ic,ic);
+			} else if (ic == 0x01) {
+				fprintf(outfile, "0x%02x|%d|Type=RESPONSE |",ic,ic);
+			} else {
+				fprintf(outfile, "0x%02x|%d|Unknown Type |",ic,ic);
+			}
+		    
+		}  else if (i == 3) {
+			fprintf(outfile, "0x%02x|%d|TODO: Decode Func |",ic,ic);
+		} else if (i == zFrameLen-1) {
+			// TODO: calculate and verify checksum
+			
+			// Checksum
+			fprintf(outfile, "0x%02x|%d|Checksum |",ic,ic);
+		} else {
+			// TODO: decode command classes
+			
+			// Dump value
+			fprintf(outfile, "0x%02x|%d| |",ic,ic);
+		}
+	
+	}
+
+	fprintf(outfile, "\n\n");
+}
+
+void dumpbuff(int dir, char *buf, int buflen) {
+	int i;
+	int ic;
+	
+	for (i=0;i<buflen;i++) {
+  		ic=(unsigned char)buf[i];
+  		if (zFramePos == 0) {
+  			if (ic != SOC) {
+  				// This is a single byte frame. Pack it and dump it
+  				zFrameLen = 1;
+  				zFramePos = 0;
+  				zFramBuf[zFramePos] = ic;
+  				dumpZBuff(dir);
+  				resetZFrame();
+  				continue;
+  			} else {
+  				zFramBuf[zFramePos++] = ic;
+  			}
+  		} else if (zFramePos == 1) {
+  			// Read Len
+  			zFrameLen = ic;
+  			zFramBuf[zFramePos++] = ic;
+  		} else {
+  			zFramBuf[zFramePos++] = ic;
+  		}
+  		
+  		// ASSERT zFrameLen < 255
+  		if (zFrameLen > 0 && zFramePos == (zFrameLen-1)) {
+  			dumpZBuff(dir);
+  			resetZFrame();
+  		}
+	}
 }
 
 /* Run stty on the given file descriptor with the given arguments */
