@@ -264,6 +264,7 @@ int zFramePos = 0; // Current position in zwave frame
 */
 void dumpZBuff(int dir)
 {
+    fprintf(outfile, "\n\n");
 	fprintf(outfile, "|Direction|Hex|Dec|Description|\n");
 	fprintf(outfile, "|---|---|---|---|");
 
@@ -355,8 +356,9 @@ void dumpbuff(int dir, char *buf, int buflen) {
 	
 	for (i=0;i<buflen;i++) {
   		ic=(unsigned char)buf[i];
+  		fprintf(outfile, "0x%02x,  ",ic);
+  		
   		if (zFramePos == 0) {
-  			fprintf(outfile, "decode header: 0x%02x ",ic);
   			if (ic != SOC) {
   				// This is a single byte frame. Pack it and dump it
   				zFrameLen = 1;
@@ -369,11 +371,9 @@ void dumpbuff(int dir, char *buf, int buflen) {
   			}
   		} else if (zFramePos == 1) {
   			// Read Len
-  			fprintf(outfile, "decode Len: 0x%02x ",ic);
   			zFrameLen = ic;
   			zFramBuf[zFramePos++] = ic;
   		} else {
-  		    fprintf(outfile, "decode other: 0x%02x ",ic);
   			zFramBuf[zFramePos++] = ic;
   		}
   		
