@@ -38,7 +38,7 @@
 struct sockaddr_in inet_resolve(const char *sockname);
 
 /* ZWave Decode  */
-char zFramBuf[BUFF_SIZE];  // ZWave frame accumulator
+unsigned char zFramBuf[BUFF_SIZE];  // ZWave frame accumulator
 int zFrameLen = 0; // Expected frame length
 int zFramePos = 0; // Current position in zwave frame
 
@@ -271,7 +271,7 @@ void dumpZBuff(int dir)
 	unsigned char ic;
 	fprintf(outfile, "---- zFrameLen=%d", zFrameLen);
 	
-	for (i=0; i > zFrameLen; i++) {
+	for (i=0; i < zFrameLen; i++) {
 		if (dir)
 		{
 		  fprintf(outfile, "|>| ");
