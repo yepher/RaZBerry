@@ -223,6 +223,319 @@ gid_t find_gid(const char *g)
   return gr->gr_gid;
 }
 
+void printFuncName(unsigned char func) {
+	switch(func) {
+	case 0x00: {
+		fprintf(outfile, "None");
+		break;
+	}
+	case 0x01: {
+		fprintf(outfile, "PromiscuousCommandHandler");
+		break;
+	}
+	case 0x02: {
+		fprintf(outfile, "DiscoveryNodes");
+		break;
+	}
+	case 0x03: {
+		fprintf(outfile, "|SerialApiApplNodeInformation");
+		break;
+	}
+	case 0x04: {
+		fprintf(outfile, "ApplicationCommandHandler");
+		break;
+	}
+	case 0x05: {
+		fprintf(outfile, "GetControllerCapabilities");
+		break;
+	}
+	case 0x06: {
+		fprintf(outfile, "SerialApiSetTimeouts");
+		break;
+	}
+	case 0x07: {
+		fprintf(outfile, "SerialGetCapabilities");
+		break;
+	}
+	case 0x08: {
+		fprintf(outfile, "SerialApiSoftReset");
+		break;
+	}
+	case 0x10: {
+		fprintf(outfile, "SetRFReceiveMode");
+		break;
+	}
+	case 0x11: {
+		fprintf(outfile, "SetSleepMode");
+		break;
+	}
+	case 0x12: {
+		fprintf(outfile, "SendNodeInformation");
+		break;
+	}
+	case 0x13: {
+		fprintf(outfile, "SendData");
+		break;
+	}
+	case 0x14: {
+		fprintf(outfile, "SendDataMulti");
+		break;
+	}
+	case 0x15: {
+		fprintf(outfile, "GetVersion");
+		break;
+	}
+	case 0x16: {
+		fprintf(outfile, "SendDataAbort");
+		break;
+	}
+	case 0x17: {
+		fprintf(outfile, "RFPowerLevelSet");
+		break;
+	}
+	case 0x18: {
+		fprintf(outfile, "SendDataMeta");
+		break;
+	}
+	case 0x20: {
+		fprintf(outfile, "MemoryGetId");
+		break;
+	}
+	case 0x21: {
+		fprintf(outfile, "MemoryGetByte");
+		break;
+	}
+	case 0x22: {
+		fprintf(outfile, "MemoryPutByte");
+		break;
+	}
+//	case 0x2: {
+//		fprintf(outfile, "MemoryGetBuffer");
+//		break;
+//	}
+	case 0x24: {
+		fprintf(outfile, "MemoryPutBuffer");
+		break;
+	}
+	case 0x23: {
+		fprintf(outfile, "ReadMemory");
+		break;
+	}
+	case 0x30: {
+		fprintf(outfile, "ClockSet");
+		break;
+	}
+	case 0x31: {
+		fprintf(outfile, "ClockGet");
+		break;
+	}
+	case 0x32: {
+		fprintf(outfile, "ClockCompare");
+		break;
+	}
+	case 0x33: {
+		fprintf(outfile, "RtcTimerCreate");
+		break;
+	}
+	case 0x34: {
+		fprintf(outfile, "RtcTimerRead");
+		break;
+	}
+	case 0x35: {
+		fprintf(outfile, "RtcTimerDelete");
+		break;
+	}
+	case 0x36: {
+		fprintf(outfile, "RtcTimerCall");
+		break;
+	}
+	case 0x41: {
+		fprintf(outfile, "GetNodeProtocolInfo");
+		break;
+	}
+	case 0x42: {
+		fprintf(outfile, "SetDefault");
+		break;
+	}
+	case 0x44: {
+		fprintf(outfile, "ReplicationCommandComplete");
+		break;
+	}
+	case 0x45: {
+		fprintf(outfile, "ReplicationSendData");
+		break;
+	}
+	case 0x46: {
+		fprintf(outfile, "AssignReturnRoute");
+		break;
+	}
+	case 0x47: {
+		fprintf(outfile, "DeleteReturnRoute");
+		break;
+	}
+	case 0x48: {
+		fprintf(outfile, "RequestNodeNeighborUpdate");
+		break;
+	}
+	case 0x49: {
+		fprintf(outfile, "ApplicationUpdate");
+		break;
+	}
+	case 0x4a: {
+		fprintf(outfile, "AddNodeToNetwork");
+		break;
+	}
+	case 0x4b: {
+		fprintf(outfile, "RemoveNodeFromNetwork");
+		break;
+	}
+	case 0x4c: {
+		fprintf(outfile, "CreateNewPrimary");
+		break;
+	}
+	case 0x4d: {
+		fprintf(outfile, "ControllerChange");
+		break;
+	}
+	case 0x50: {
+		fprintf(outfile, "SetLearnMode");
+		break;
+	}
+	case 0x51: {
+		fprintf(outfile, "AssignSucReturnRoute");
+		break;
+	}
+	case 0x52: {
+		fprintf(outfile, "EnableSuc");
+		break;
+	}
+	case 0x53: {
+		fprintf(outfile, "RequestNetworkUpdate");
+		break;
+	}
+	case 0x54: {
+		fprintf(outfile, "SetSucNodeId");
+		break;
+	}
+	case 0x55: {
+		fprintf(outfile, "DeleteSucReturnRoute");
+		break;
+	}
+	case 0x56: {
+		fprintf(outfile, "GetSucNodeId");
+		break;
+	}
+	case 0x57: {
+		fprintf(outfile, "SendSucId");
+		break;
+	}
+	case 0x59: {
+		fprintf(outfile, "RediscoveryNeeded");
+		break;
+	}
+	case 0x60: {
+		fprintf(outfile, "RequestNodeInfo");
+		break;
+	}
+	case 0x61: {
+		fprintf(outfile, "RemoveFailedNodeId");
+		break;
+	}
+	case 0x62: {
+		fprintf(outfile, "IsFailedNode");
+		break;
+	}
+	case 0x63: {
+		fprintf(outfile, "ReplaceFailedNode");
+		break;
+	}
+	case 0x70: {
+		fprintf(outfile, "TimerStart");
+		break;
+	}
+	case 0x71: {
+		fprintf(outfile, "TimerRestart");
+		break;
+	}
+	case 0x72: {
+		fprintf(outfile, "TimerCancel");
+		break;
+	}
+	case 0x73: {
+		fprintf(outfile, "TimerCall");
+		break;
+	}
+	case 0x80: {
+		fprintf(outfile, "GetRoutingTableLine");
+		break;
+	}
+	case 0x81: {
+		fprintf(outfile, "GetTXCounter");
+		break;
+	}
+	case 0x82: {
+		fprintf(outfile, "ResetTXCounter");
+		break;
+	}
+	case 0x83: {
+		fprintf(outfile, "StoreNodeInfo");
+		break;
+	}
+	case 0x84: {
+		fprintf(outfile, "StoreHomeId");
+		break;
+	}
+	case 0x90: {
+		fprintf(outfile, "LockRouteResponse");
+		break;
+	}
+	case 0x91: {
+		fprintf(outfile, "SendDataRouteDemo");
+		break;
+	}
+	case 0x95: {
+		fprintf(outfile, "SerialApiTest");
+		break;
+	}
+	case 0xa0: {
+		fprintf(outfile, "SerialApiSlaveNodeInfo");
+		break;
+	}
+	case 0xa1: {
+		fprintf(outfile, "ApplicationSlaveCommandHandler");
+		break;
+	}
+	case 0xa2: {
+		fprintf(outfile, "SendSlaveNodeInfo");
+		break;
+	}
+	case 0xa3: {
+		fprintf(outfile, "SendSlaveData");
+		break;
+	}
+	case 0xa4: {
+		fprintf(outfile, "SetSlaveLearnMode");
+		break;
+	}
+	case 0xa5: {
+		fprintf(outfile, "GetVirtualNodes");
+		break;
+	}
+	case 0xa6: {
+		fprintf(outfile, "IsVirtualNode");
+		break;
+	}
+	case 0xd0: {
+		fprintf(outfile, "SetPromiscuousMode");
+		break;
+	}
+	default: {
+		fprintf(outfile, "UNKNOWN(0x%02x)", func);
+	}
+	}
+}
+
+
 /* main program */
 
 void orig_dumpbuff(int dir, char *buf, int buflen)
@@ -329,7 +642,9 @@ void dumpZBuff(int dir)
 		    
 		}  else if (i == 3) {
 			// Function
-			fprintf(outfile, "0x%02x|%d|TODO: Decode Func |",ic,ic);
+			fprintf(outfile, "0x%02x|%d|function=",ic,ic);
+			printFuncName(ic);
+			fprintf(outfile, " |");
 		} else if (i == (zFrameLen-1)) {
 			// TODO: calculate and verify checksum
 			
