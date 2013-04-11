@@ -661,6 +661,7 @@ void dumpZBuff(int dir)
 	}
 
 	fprintf(outfile, "\n\n");
+	fflush(outfile);
 }
 
 void dumpbuff(int dir, char *buf, int buflen) {

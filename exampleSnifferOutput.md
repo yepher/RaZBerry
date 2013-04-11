@@ -1,4 +1,4 @@
- interceptty -s 'ispeed 115200 ospeed 115200' /dev/ttyAMA0 /tmp/ttyAMA0 |tee /tmp/zwave2.out
+pi@raspberrypi ~ $ interceptty -s 'ispeed 115200 ospeed 115200' /dev/ttyAMA0 /tmp/ttyAMA0 |tee /tmp/zwave2.out
 
 
 0x01,  0x03,  0x00,  0x07,  0xfb,  
@@ -8,7 +8,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x03|3|Length=3 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x07|7|TODO: Decode Func |
+|<| 0x07|7|function=SerialGetCapabilities |
 |<| 0xfb|251|Checksum |
 
 
@@ -26,7 +26,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x2b|43|Length=43 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x07|7|TODO: Decode Func |
+|>| 0x07|7|function=SerialGetCapabilities |
 |>| 0x04|4| |
 |>| 0x02|2| |
 |>| 0x01|1| |
@@ -84,7 +84,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x05|5|Length=5 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x06|6|TODO: Decode Func |
+|<| 0x06|6|function=SerialApiSetTimeouts |
 |<| 0x0a|10| |
 |<| 0x0a|10| |
 |<| 0xfc|252|Checksum |
@@ -104,7 +104,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x05|5|Length=5 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x06|6|TODO: Decode Func |
+|>| 0x06|6|function=SerialApiSetTimeouts |
 |>| 0x0a|10| |
 |>| 0x0a|10| |
 |>| 0xfd|253|Checksum |
@@ -124,7 +124,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x03|3|Length=3 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0xd2|210|TODO: Decode Func |
+|<| 0xd2|210|function=UNKNOWN(0xd2) |
 |<| 0x2e|46|Checksum |
 
 
@@ -142,7 +142,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x03|3|Length=3 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x20|32|TODO: Decode Func |
+|<| 0x20|32|function=MemoryGetId |
 |<| 0xdc|220|Checksum |
 
 
@@ -160,7 +160,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x08|8|Length=8 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x20|32|TODO: Decode Func |
+|>| 0x20|32|function=MemoryGetId |
 |>| 0x01|1| |
 |>| 0x07|7| |
 |>| 0xab|171| |
@@ -183,7 +183,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x03|3|Length=3 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x05|5|TODO: Decode Func |
+|<| 0x05|5|function=GetControllerCapabilities |
 |<| 0xf9|249|Checksum |
 
 
@@ -201,7 +201,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x04|4|Length=4 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x05|5|TODO: Decode Func |
+|>| 0x05|5|function=GetControllerCapabilities |
 |>| 0x06|6| |
 |>| 0xf9|249|Checksum |
 
@@ -220,7 +220,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x03|3|Length=3 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x15|21|TODO: Decode Func |
+|<| 0x15|21|function=GetVersion |
 |<| 0xe9|233|Checksum |
 
 
@@ -238,7 +238,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x10|16|Length=16 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x15|21|TODO: Decode Func |
+|>| 0x15|21|function=GetVersion |
 |>| 0x5a|90| |
 |>| 0x2d|45| |
 |>| 0x57|87| |
@@ -269,7 +269,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x03|3|Length=3 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x56|86|TODO: Decode Func |
+|<| 0x56|86|function=GetSucNodeId |
 |<| 0xaa|170|Checksum |
 
 
@@ -287,7 +287,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x04|4|Length=4 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x56|86|TODO: Decode Func |
+|>| 0x56|86|function=GetSucNodeId |
 |>| 0x01|1| |
 |>| 0xad|173|Checksum |
 
@@ -306,7 +306,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x03|3|Length=3 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x02|2|TODO: Decode Func |
+|<| 0x02|2|function=DiscoveryNodes |
 |<| 0xfe|254|Checksum |
 
 
@@ -324,7 +324,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x25|37|Length=37 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x02|2|TODO: Decode Func |
+|>| 0x02|2|function=DiscoveryNodes |
 |>| 0x05|5| |
 |>| 0x00|0| |
 |>| 0x1d|29| |
@@ -376,7 +376,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x04|4|Length=4 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x41|65|TODO: Decode Func |
+|<| 0x41|65|function=GetNodeProtocolInfo |
 |<| 0x01|1| |
 |<| 0xbb|187|Checksum |
 
@@ -395,7 +395,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x09|9|Length=9 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x41|65|TODO: Decode Func |
+|>| 0x41|65|function=GetNodeProtocolInfo |
 |>| 0x92|146| |
 |>| 0x16|22| |
 |>| 0x00|0| |
@@ -419,7 +419,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x04|4|Length=4 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x62|98|TODO: Decode Func |
+|<| 0x62|98|function=IsFailedNode |
 |<| 0x01|1| |
 |<| 0x98|152|Checksum |
 
@@ -438,7 +438,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x04|4|Length=4 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x62|98|TODO: Decode Func |
+|>| 0x62|98|function=IsFailedNode |
 |>| 0x00|0| |
 |>| 0x98|152|Checksum |
 
@@ -457,7 +457,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x04|4|Length=4 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x41|65|TODO: Decode Func |
+|<| 0x41|65|function=GetNodeProtocolInfo |
 |<| 0x02|2| |
 |<| 0xb8|184|Checksum |
 
@@ -476,7 +476,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x09|9|Length=9 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x41|65|TODO: Decode Func |
+|>| 0x41|65|function=GetNodeProtocolInfo |
 |>| 0xd2|210| |
 |>| 0x94|148| |
 |>| 0x00|0| |
@@ -500,7 +500,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x04|4|Length=4 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x62|98|TODO: Decode Func |
+|<| 0x62|98|function=IsFailedNode |
 |<| 0x02|2| |
 |<| 0x9b|155|Checksum |
 
@@ -519,7 +519,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x04|4|Length=4 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x62|98|TODO: Decode Func |
+|>| 0x62|98|function=IsFailedNode |
 |>| 0x00|0| |
 |>| 0x98|152|Checksum |
 
@@ -538,7 +538,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x04|4|Length=4 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x41|65|TODO: Decode Func |
+|<| 0x41|65|function=GetNodeProtocolInfo |
 |<| 0x03|3| |
 |<| 0xb9|185|Checksum |
 
@@ -557,7 +557,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x09|9|Length=9 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x41|65|TODO: Decode Func |
+|>| 0x41|65|function=GetNodeProtocolInfo |
 |>| 0x52|82| |
 |>| 0xdc|220| |
 |>| 0x00|0| |
@@ -581,7 +581,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x04|4|Length=4 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x62|98|TODO: Decode Func |
+|<| 0x62|98|function=IsFailedNode |
 |<| 0x03|3| |
 |<| 0x9a|154|Checksum |
 
@@ -600,7 +600,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x04|4|Length=4 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x62|98|TODO: Decode Func |
+|>| 0x62|98|function=IsFailedNode |
 |>| 0x00|0| |
 |>| 0x98|152|Checksum |
 
@@ -619,7 +619,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x04|4|Length=4 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x41|65|TODO: Decode Func |
+|<| 0x41|65|function=GetNodeProtocolInfo |
 |<| 0x04|4| |
 |<| 0xbe|190|Checksum |
 
@@ -638,7 +638,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x09|9|Length=9 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x41|65|TODO: Decode Func |
+|>| 0x41|65|function=GetNodeProtocolInfo |
 |>| 0xd2|210| |
 |>| 0x9c|156| |
 |>| 0x00|0| |
@@ -662,7 +662,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x04|4|Length=4 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x62|98|TODO: Decode Func |
+|<| 0x62|98|function=IsFailedNode |
 |<| 0x04|4| |
 |<| 0x9d|157|Checksum |
 
@@ -681,7 +681,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x04|4|Length=4 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x62|98|TODO: Decode Func |
+|>| 0x62|98|function=IsFailedNode |
 |>| 0x00|0| |
 |>| 0x98|152|Checksum |
 
@@ -700,7 +700,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x04|4|Length=4 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x41|65|TODO: Decode Func |
+|<| 0x41|65|function=GetNodeProtocolInfo |
 |<| 0x05|5| |
 |<| 0xbf|191|Checksum |
 
@@ -719,7 +719,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x09|9|Length=9 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x41|65|TODO: Decode Func |
+|>| 0x41|65|function=GetNodeProtocolInfo |
 |>| 0x52|82| |
 |>| 0xdc|220| |
 |>| 0x00|0| |
@@ -743,7 +743,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x04|4|Length=4 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x62|98|TODO: Decode Func |
+|<| 0x62|98|function=IsFailedNode |
 |<| 0x05|5| |
 |<| 0x9c|156|Checksum |
 
@@ -762,7 +762,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x04|4|Length=4 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x62|98|TODO: Decode Func |
+|>| 0x62|98|function=IsFailedNode |
 |>| 0x00|0| |
 |>| 0x98|152|Checksum |
 
@@ -781,7 +781,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x04|4|Length=4 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x41|65|TODO: Decode Func |
+|<| 0x41|65|function=GetNodeProtocolInfo |
 |<| 0x06|6| |
 |<| 0xbc|188|Checksum |
 
@@ -800,7 +800,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x09|9|Length=9 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x41|65|TODO: Decode Func |
+|>| 0x41|65|function=GetNodeProtocolInfo |
 |>| 0xd1|209| |
 |>| 0x8c|140| |
 |>| 0x00|0| |
@@ -824,7 +824,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x04|4|Length=4 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x62|98|TODO: Decode Func |
+|<| 0x62|98|function=IsFailedNode |
 |<| 0x06|6| |
 |<| 0x9f|159|Checksum |
 
@@ -843,7 +843,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x04|4|Length=4 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x62|98|TODO: Decode Func |
+|>| 0x62|98|function=IsFailedNode |
 |>| 0x00|0| |
 |>| 0x98|152|Checksum |
 
@@ -862,7 +862,7 @@
 |<| 0x01|1|__Header=SOC__|
 |<| 0x04|4|Length=4 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x41|65|TODO: Decode Func |
+|<| 0x41|65|function=GetNodeProtocolInfo |
 |<| 0x07|7| |
 |<| 0xbd|189|Checksum |
 
@@ -881,7 +881,7 @@
 |>| 0x01|1|__Header=SOC__|
 |>| 0x09|9|Length=9 |
 |>| 0x01|1|Type=RESPONSE |
-|>| 0x41|65|TODO: Decode Func |
+|>| 0x41|65|function=GetNodeProtocolInfo |
 |>| 0xd2|210| |
 |>| 0x94|148| |
 |>| 0x00|0| |
@@ -895,21 +895,188 @@
 
 |Direction|Hex|Dec|Description|
 |---|---|---|---|
-|<| 0x06|6|__Header=ACK__|
+|<| 0x06|6|__Header=ACK__
 
 
-0x01,  0x04,  0x00,  0x62,  0x07,  0x9e,  
+
+0x01,  0x09,  0x00,  0x04,  0x00,  0x28,  0x03,  0x20,  0x01,  0x00,  0xf8,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x09|9|Length=9 |
+|>| 0x00|0|Type=REQUEST |
+|>| 0x04|4|function=ApplicationCommandHandler |
+|>| 0x00|0| |
+|>| 0x28|40| |
+|>| 0x03|3| |
+|>| 0x20|32| |
+|>| 0x01|1| |
+|>| 0x00|0| |
+|>| 0xf8|248|Checksum |
+
+
+0x01,  0x09,  0x00,  0x04,  0x00,  0x28,  0x03,  0x20,  0x01,  0x00,  0xf8,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x09|9|Length=9 |
+|>| 0x00|0|Type=REQUEST |
+|>| 0x04|4|function=ApplicationCommandHandler |
+|>| 0x00|0| |
+|>| 0x28|40| |
+|>| 0x03|3| |
+|>| 0x20|32| |
+|>| 0x01|1| |
+|>| 0x00|0| |
+|>| 0xf8|248|Checksum |
+
+
+0x01,  0x09,  0x00,  0x04,  0x00,  0x28,  0x03,  0x20,  0x01,  0x00,  0xf8,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x09|9|Length=9 |
+|>| 0x00|0|Type=REQUEST |
+|>| 0x04|4|function=ApplicationCommandHandler |
+|>| 0x00|0| |
+|>| 0x28|40| |
+|>| 0x03|3| |
+|>| 0x20|32| |
+|>| 0x01|1| |
+|>| 0x00|0| |
+|>| 0xf8|248|Checksum |
+
+
+0x01,  0x09,  0x00,  0x04,  0x00,  0x28,  0x03,  0x20,  0x01,  0x00,  0xf8,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x09|9|Length=9 |
+|>| 0x00|0|Type=REQUEST |
+|>| 0x04|4|function=ApplicationCommandHandler |
+|>| 0x00|0| |
+|>| 0x28|40| |
+|>| 0x03|3| |
+|>| 0x20|32| |
+|>| 0x01|1| |
+|>| 0x00|0| |
+|>| 0xf8|248|Checksum |
+
+
+0x01,  0x04,  0x00,  0xd0,  0xff,  0xd4,  
 
 |Direction|Hex|Dec|Description|
 |---|---|---|---|
 |<| 0x01|1|__Header=SOC__|
 |<| 0x04|4|Length=4 |
 |<| 0x00|0|Type=REQUEST |
-|<| 0x62|98|TODO: Decode Func |
-|<| 0x07|7| |
-|<| 0x9e|158|Checksum |
+|<| 0xd0|208|function=SetPromiscuousMode |
+|<| 0xff|255| |
+|<| 0xd4|212|Checksum |
 
 
+0x06,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x06|6|__Header=ACK__|
+
+
+0x01,  0x0b,  0x00,  0x04,  0x00,  0x04,  0x05,  0x31,  0x05,  0x01,  0x09,  0x49,  0x84,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x0b|11|Length=11 |
+|>| 0x00|0|Type=REQUEST |
+|>| 0x04|4|function=ApplicationCommandHandler |
+|>| 0x00|0| |
+|>| 0x04|4| |
+|>| 0x05|5| |
+|>| 0x31|49| |
+|>| 0x05|5| |
+|>| 0x01|1| |
+|>| 0x09|9| |
+|>| 0x49|73| |
+|>| 0x84|132|Checksum |
+
+
+0x01,  0x0b,  0x00,  0x04,  0x00,  0x04,  0x05,  0x31,  0x05,  0x01,  0x09,  0x49,  0x84,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x0b|11|Length=11 |
+|>| 0x00|0|Type=REQUEST |
+|>| 0x04|4|function=ApplicationCommandHandler |
+|>| 0x00|0| |
+|>| 0x04|4| |
+|>| 0x05|5| |
+|>| 0x31|49| |
+|>| 0x05|5| |
+|>| 0x01|1| |
+|>| 0x09|9| |
+|>| 0x49|73| |
+|>| 0x84|132|Checksum |
+
+
+0x01,  0x0b,  0x00,  0x04,  0x00,  0x04,  0x05,  0x31,  0x05,  0x01,  0x09,  0x49,  0x84,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x0b|11|Length=11 |
+|>| 0x00|0|Type=REQUEST |
+|>| 0x04|4|function=ApplicationCommandHandler |
+|>| 0x00|0| |
+|>| 0x04|4| |
+|>| 0x05|5| |
+|>| 0x31|49| |
+|>| 0x05|5| |
+|>| 0x01|1| |
+|>| 0x09|9| |
+|>| 0x49|73| |
+|>| 0x84|132|Checksum |
+
+
+0x01,  0x0b,  0x00,  0x04,  0x00,  0x04,  0x05,  0x31,  0x05,  0x01,  0x09,  0x49,  0x84,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x0b|11|Length=11 |
+|>| 0x00|0|Type=REQUEST |
+|>| 0x04|4|function=ApplicationCommandHandler |
+|>| 0x00|0| |
+|>| 0x04|4| |
+|>| 0x05|5| |
+|>| 0x31|49| |
+|>| 0x05|5| |
+|>| 0x01|1| |
+|>| 0x09|9| |
+|>| 0x49|73| |
+|>| 0x84|132|Checksum |
+
+
+0x01,  0x09,  0x00,  0x04,  0x00,  0x04,  0x03,  0x42,  0x03,  0x00,  0xb4,  
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
+|>| 0x01|1|__Header=SOC__|
+|>| 0x09|9|Length=9 |
+|>| 0x00|0|Type=REQUEST |
+|>| 0x04|4|function=ApplicationCommandHandler |
+|>| 0x00|0| |
+|>| 0x04|4| |
+|>| 0x03|3| |
+|>| 0x42|66| |
+|>| 0x03|3| |
+|>| 0x00|0| |
+|>| 0xb4|180|Checksum |
 
 
 
