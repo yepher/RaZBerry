@@ -7,6 +7,11 @@ ZWave Serial API Sniffing Journal
 
 These are my notes About ZWave mostly compiled with RaZberry, Open ZWave, and a lot of Google-ing. See the bottom of this file for a list of the most helpful resources that are not inline linked.
 
+Updates
+
+2013 Aug 13 - I am not backing the HackRF on KickStarter. The goal is to apply my learnings to decoding the RF part of ZWave.
+
+
 I have been asked why am I doing this. My answer is two fold:
 
 1. I want to make sure that my new favorite technology is secure. I don't want someone able to unlock my door because I am using ZWave. I feel I can accomplish this more throughly if I am open about my knowledge and others are open about theirs.
