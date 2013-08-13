@@ -9,7 +9,7 @@ These are my notes About ZWave mostly compiled with RaZberry, Open ZWave, and a 
 
 Updates
 
-2013 Aug 13 - I am not backing the HackRF on KickStarter. The goal is to apply my learnings to decoding the RF part of ZWave.
+2013 Aug 13 - I am now backing the HackRF on KickStarter. The goal is to apply my learnings to decoding the RF part of ZWave.
 
 
 I have been asked why am I doing this. My answer is two fold:
