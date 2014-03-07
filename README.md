@@ -77,8 +77,11 @@ I would like to make a ZWave decoder that will monitor the serial line and outpu
 ZWave Frames
 ========
 
+![ZWave Frame](https://raw.github.com/yepher/RaZBerry/master/images/zwaveFrameFormat.png)
+
 
 _Basic ZWave Frame_
+
 
 |Byte Position: |0|1|3|4|…| N|
 |---|---|---|---|---|---|---|---|---|---|---|---|
