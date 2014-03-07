@@ -647,6 +647,10 @@ More ZWave References
 * ZWave insiders wiki - http://wiki.zwaveeurope.com/
 * ZWave Dimmer Test - https://code.google.com/p/i7afp/source/browse/#svn%2Ftrunk%2FSourcecode%2FZWave
 * ZWave Prezi Introduction - http://prezi.com/839cbmtlz-3n/z-wave/
+* Getting Firmware from chips http://blog.cassidiancybersecurity.com/post/2014/02/Dumping-firmware-from-ASIC
+* BlackHat talk on ZWave - https://www.youtube.com/watch?v=KYaEQhvodc8
+* Z-Force ZWave attack tool - https://code.google.com/p/z-force/
+
 
 [1]: http://www.digikey.com/us/en/ph/SigmaDesigns/z-wave_zm3102.html        "ZM3102"
 [2]: http://www.raspberrypi.org/ "Raspberry Pi"

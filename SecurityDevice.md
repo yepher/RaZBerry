@@ -1,0 +1,4 @@
+See: https://www.youtube.com/watch?v=KYaEQhvodc8 @ 26:32
+
+
+![Security Device Signalling](http://yepher.com/sequencePNG.jsp?data=%5Bsettings%5D%0AshowRungNumber%3Dyes%0A%0A%5Btitle%5D%0AZWave%20Security%20Signaling%0A%0A%5Bactors%5D%0AController%0ASecurity%20Device%0A%0A%5Bsequences%5D%0AGet%20ready%20for%20key%20establishment%2C%20Controller%2C%20Security%20Device%0AReady%2C%20Security%20Device%2C%20Controller%0ANonce%20request%2C%20Controller%2C%20security%20device%0ANonce%20Value%2C%20Security%20device%2C%20controller%0AEncrypted%20network%20key-Kn%2C%20Controller%2C%20Security%20Device%0ANonce%20request%2C%20Security%20Device%2C%20Controller%0ANonce%20value%2C%20Controller%2C%20Security%20Device%0AEncrypted%20message%20%28new%20key%20is%20set%29%2C%20Security%20Device%2C%20controller%0A%0A&name=image.png).
