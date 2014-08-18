@@ -9,6 +9,8 @@ These are my notes About ZWave mostly compiled with RaZberry, Open ZWave, and a 
 
 Updates
 
+2014 Aug 18 - HackRF has arrived and now I have raw RF samples of ZWave devices. Next step is to work on GFSK decoder.
+
 2013 Aug 13 - I am now backing the HackRF on KickStarter. The goal is to apply my learnings to decoding the RF part of ZWave.
 
 
