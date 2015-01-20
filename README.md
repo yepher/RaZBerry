@@ -616,7 +616,7 @@ Once you are done sniffing the serial port you will need to stop the Z-Way serve
 JSON Server
 ========
 
-Z-Way makes a server for Raspberry PI and RaZberry. It seems nice but I don't really have much interest in it. I am a little anti Node.js which is what so many ZWave things seem to be based on?
+Z-Way makes a server for Raspberry PI and RaZberry.
 
 
 Terms
