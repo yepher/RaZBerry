@@ -211,6 +211,9 @@ Turn Light Switch On from Controller
 
 Light Switch ?On?
 =========
+
+|Direction|Hex|Dec|Description|
+|---|---|---|---|
 |>| 0x01|1|__Header=SOC__|
 |>| 0x10|16|Length=16 |
 |>| 0x00|0|Type=REQUEST|
