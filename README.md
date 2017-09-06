@@ -85,8 +85,8 @@ ZWave Frames
 _Basic ZWave Frame_
 
 
-|Byte Position: |0|1|3|4|…| N|
-|---|---|---|---|---|---|---|---|---|---|---|---|
+|Byte Position: |0|1|2|3|…| N|
+|---|---|---|---|---|---|---|
 | **Field:** |Header|Length|Type (Request 0x00 or Response 0x01)|Command - ZWave Function (see ZWave Functions below)| Data … | Checksum|
 
 
